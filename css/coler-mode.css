@@ -1,0 +1,14 @@
+/* LIGHT MOOD */
+
+:root{
+    /* Color */
+    --bg:#fff;
+    --text:#000;
+
+    /* Face animation */
+
+    --tl-1: url(../assets/face-animation-light/tl-1.png);
+
+}
+
+
