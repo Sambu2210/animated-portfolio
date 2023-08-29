@@ -25,15 +25,12 @@ toggleButton.addEventListener("click",()=>{
 function saveColorMode(){
     // check if the root element has a class of "dark-mode". If yes then the current mode is switched to light.
     const currentMode = root.classList.contains("dark-mode") ? "light-mode" : "dark-mode";
-    console.log("currentMode",currentMode)
     root.classList.remove("dark-mode", "light-mode");
     root.classList.add(currentMode);
     localStorage.setItem(storageKey,currentMode);
     updateToggleButton();  
 }
 function updateToggleButton(){
-    console.log(" root.classList",root.classList);
-    console.log(" root.classList",root.classList.contains('dark-mode'));
     if(root.classList.contains('dark-mode')){
         toggleButton.style.backgroundImage = "var(--moon)";
     } 

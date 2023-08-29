@@ -1,4 +1,13 @@
-/* Face Animation */
+/* General animation settings */
+
+.animate-top-left,.reverse-animate-top-left{
+    animation-fill-mode: forwards;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+/* Hover Animation */
 
 @keyframes hover {
     0%{
@@ -10,4 +19,49 @@
     100%{
     transform: translateY(0);
     }    
+}
+
+/* ANIMATE TOP LEFT */
+
+.animate-top-left{
+    animation-name: top-left;
+}
+
+.reverse-animate-top-left{
+    animation-name: reverse-top-left;
+}
+
+@keyframes top-left{
+    0%{
+        background-image: var(--tl-1);
+    }
+    25%{
+        background-image: var(--tl-2);
+    }
+    50%{
+        background-image: var(--tl-3);
+    }
+    75%{
+        background-image: var(--tl-4);
+    }
+    100%{
+        background-image: var(--tl-5);
+    }
+}
+@keyframes reverse-top-left{
+    0%{
+        background-image: var(--tl-5);
+    }
+    25%{
+        background-image: var(--tl-4);
+    }
+    50%{
+        background-image: var(--tl-3);
+    }
+    75%{
+        background-image: var(--tl-2);
+    }
+    100%{
+        background-image: var(--tl-1);
+    }
 }
