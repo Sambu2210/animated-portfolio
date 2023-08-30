@@ -2,17 +2,17 @@
 
 const heroImage = document.querySelector("#hero_animation_img");
 const tl = document.querySelector("#grid-tl");
-// const tr = document.querySelector("#grid-tr");
+const tr = document.querySelector("#grid-tr");
 // const bl = document.querySelector("#grid-bl");
 // const br = document.querySelector("#grid-br");
 
 const tlBtn = document.querySelector("#grid-tl-btn");
-// const trBtn = document.querySelector("#grid-tr-btn");
+const trBtn = document.querySelector("#grid-tr-btn");
 // const blBtn = document.querySelector("#grid-bl-btn");
 // const brBtn = document.querySelector("#grid-br-btn");
 
 const tlContent = document.querySelector("#grid-tl-content");
-// const trContent = document.querySelector("#grid-tr-content");
+const trContent = document.querySelector("#grid-tr-content");
 // const blContent = document.querySelector("#grid-bl-content");
 // const brContent = document.querySelector("#grid-br-content");
 
@@ -30,8 +30,8 @@ const textColorAlt = "var(--text-alt)";
 let tlActive = "translateX(5vw) translateY(0)";
 let tlHidden = "translateX(-100vw) translateY(-100vh)";
 
-// let trActive = "translateX(-5vw) translateY(0)";
-// let trHidden = "translateX(100vw) translateY(-100vh)";
+let trActive = "translateX(-5vw) translateY(0)";
+let trHidden = "translateX(100vw) translateY(-100vh)";
 
 // let blActive = "translateX(10vw) translateY(7vh)";
 // let blHidden = "translateX(-100vw) translateY(100vh)";
@@ -62,8 +62,8 @@ function handelWindowResize(){
                  tlContent.style.justifyContent = "center";
                  tlContent.style.background = "var(--bg-transparent)";
                  tlContent.style.zIndex = "200";
-                 tlBtn.style.zIndex = "300"
-                //  trBtn.style.zIndex = "100";
+                 tlBtn.style.zIndex = "300";
+                 trBtn.style.zIndex = "100";
                 //  blBtn.style.zIndex = "100";
                 //  brBtn.style.zIndex = "100";
             }
@@ -78,15 +78,36 @@ function handelWindowResize(){
             break;
         case "top-right":
             if(window.innerWidth <= 1100){
-                //some code
-            }
+                trActive = "translateX(0) translateY(0)";
+                trContent.style.transform = "translateX(0vw) translateY(0)";
+                trContent.style.width = "100vw";
+                trContent.style.height = "100vh";
+                trContent.style.top = "0";
+                trContent.style.display = "flex";
+                trContent.style.alignItems = "center";
+                trContent.style.justifyContent = "center";
+                trContent.style.background = "var(--bg-transparent)";
+                trContent.style.zIndex = "200";
+                trBtn.style.zIndex = "300"
+                tlBtn.style.zIndex = "100";
+               //  blBtn.style.zIndex = "100";
+               //  brBtn.style.zIndex = "100";
+           }
+           else{
+              trActive = "translateX(-5vw) translateY(0)";
+              trContent.style.transform = "translateX(-5vw) translateY(0)";
+              trContent.style.width = "30vw";
+              trContent.style.height = "0";
+              trContent.style.top = "10vh";
+              trContent.style.display = "block";
+           }
             break;
         case "bottom-left":
             if(window.innerWidth <= 1100){
                 //some code
             }
             break;
-        case "bottom-left":
+        case "bottom-right":
             if(window.innerWidth <= 1100){
                 //some code
             }
@@ -105,8 +126,12 @@ function playAnimation(animation, reverseAnimation){
     // Remove all the animation classes from heroImage
 
     heroImage.className = "";
+   console.log("animation", animation);
 
+    console.log("lastreverse", lastReverseAnimation);
     if(lastReverseAnimation != ""){
+      console.log("lastreverse !", lastReverseAnimation);
+
         heroImage.classList.add(lastReverseAnimation);
         setTimeout(function (){
             heroImage.classList.remove(lastReverseAnimation);
@@ -115,31 +140,29 @@ function playAnimation(animation, reverseAnimation){
         },200);
     }
     else{
-
         heroImage.classList.add(animation);
         lastReverseAnimation = reverseAnimation;
-        console.log(lastReverseAnimation);
-
     }
 };
 
 function playClosingAnimation(reverseAnimation){
     tlBtn.innerHTML = "About";
-    // trBtn.innerHTML = "Experience";
+    trBtn.innerHTML = "Experience";
     // blBtn.innerHTML = "Projects";
     // brBtn.innerHTML = "Contect";
 
     switch(activeCorner){
+        
         case "top-left":
            tlBtn.style.background = bgColor;
            tlBtn.style.color = textColor;
            tlContent.style.transform = tlHidden;
             break;
-        // case "top-right":
-        //     tlBtn.style.background = bgColor;
-        //     tlBtn.style.color = textColor;
-        //     tlContent.style.transform = tlHidden;
-        //     break;
+        case "top-right":
+            trBtn.style.background = bgColor;
+            trBtn.style.color = textColor;
+            trContent.style.transform = trHidden;
+            break;
         // case "bottom-left":
         //     tlBtn.style.background = bgColor;
         //     tlBtn.style.color = textColor;
@@ -155,6 +178,7 @@ function playClosingAnimation(reverseAnimation){
     heroImage.className = "";
     lastReverseAnimation = "";
     activeCorner = "";
+
     heroImage.classList.add(reverseAnimation);
     setTimeout(function () {
         heroImage.classList.remove(reverseAnimation);
@@ -164,74 +188,74 @@ function playClosingAnimation(reverseAnimation){
 //Onclick corner button function
 tlBtn.onclick = function(){
     if(activeCorner ==="top-left"){
-        playClosingAnimation("reverse-animation-top-left");
+        playClosingAnimation("reverse-animate-top-left");
     }
     else{
-        // trBtn.innerHTML = "Experiecne";
+        trBtn.innerHTML = "Experience";
         // blBtn.innerHTML = "Projects";
         // brBtn.innerHTML = "Contact";
 
         activeCorner = "top-left";
         tlBtn.innerHTML = "&uarr;<br/>About";
-        console.log(activeCorner);
-        handelWindowResize("reverse-animation-top-left");
+        handelWindowResize();
         playAnimation("animate-top-left","reverse-animate-top-left");
 
         //Change background color
         tlBtn.style.background = bgColorAlt;
-        // trBtn.style.background = bgColor;
+        trBtn.style.background = bgColor;
         // blBtn.style.background = bgColor;
         // brBtn.style.background = bgColor;
 
         //Change text color
         tlBtn.style.color = textColorAlt;
-        // trBtn.style.background = textColor;
+        trBtn.style.color = textColor;
         // blBtn.style.background = textColor;
         // brBtn.style.background = textColor;
 
         //change position of the corner content
 
         tlContent.style.transform = tlActive;
-        // trContent.style.transform = trHidden;
+        trContent.style.transform = trHidden;
         // brContent.style.transform = brHidden;
         // blContent.style.transform = blHidden;
     }
 }
 
-// trBtn.onclick = function(){
-//     if(activeCorner=="top-right"){
-//         playClosingAnimation("reverse-animation-top-right");
-//     }
-//     else{
-//         tlBtn.innerHTML = "About";
-//         blBtn.innerHTML = "Projects";
-//         brBtn.innerHTML = "Contact";
+trBtn.onclick = function(){
+    if(activeCorner=="top-right"){
+        playClosingAnimation("reverse-animate-top-right");
+    }
+    else{
+        tlBtn.innerHTML = "About";
+        // blBtn.innerHTML = "Projects";
+        // brBtn.innerHTML = "Contact";
 
-//         activeCorner = "top-right";
-//         trBtn.innerHTML = "&uarr;<br/>Experience";
-//         handelWindowResize();
-//         playedAnimation("animation-top-right","reverse-animation-top-right");
+        activeCorner = "top-right";
+        trBtn.innerHTML = "&uarr;<br/>Experience";
 
-//         //Change background color
-//         tlBtn.style.background = bgColor;
-//         trBtn.style.background = bgColorAlt;
-//         blBtn.style.background = bgColor;
-//         brBtn.style.background = bgColor;
+        handelWindowResize();
+        playAnimation("animate-top-right","reverse-animate-top-right");
 
-//         //Change text color
-//         tlBtn.style.background = textColor;
-//         trBtn.style.background = textColorAlt;
-//         blBtn.style.background = textColor;
-//         brBtn.style.background = textColor;
+        //Change background color
+        tlBtn.style.background = bgColor;
+        trBtn.style.background = bgColorAlt;
+        // blBtn.style.background = bgColor;
+        // brBtn.style.background = bgColor;
 
-//         //change position of the corner content
+        //Change text color
+        tlBtn.style.color = textColor;
+        trBtn.style.color = textColorAlt;
+        // blBtn.style.background = textColor;
+        // brBtn.style.background = textColor;
 
-//         tlContent.style.tlansform = tlHidden;
-//         trContent.style.transform = trActive;
-//         brContent.style.transform = brHidden;
-//         blContent.style.transform = blHidden;
-//     }
-// }
+        //change position of the corner content
+
+        tlContent.style.transform = tlHidden;
+        trContent.style.transform = trActive;
+        // brContent.style.transform = brHidden;
+        // blContent.style.transform = blHidden;
+    }
+}
 
 // blBtn.onclick = function(){
 //     if(activeCorner=="bottom-left"){

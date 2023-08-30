@@ -1,6 +1,8 @@
 /* General animation settings */
 
-.animate-top-left,.reverse-animate-top-left{
+.animate-top-left,.reverse-animate-top-left,
+.animate-top-right,.reverse-animate-top-right
+{
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
     animation-iteration-count: 1;
@@ -26,7 +28,6 @@
 .animate-top-left{
     animation-name: top-left;
 }
-
 .reverse-animate-top-left{
     animation-name: reverse-top-left;
 }
@@ -63,5 +64,49 @@
     }
     100%{
         background-image: var(--tl-1);
+    }
+}
+
+
+/* ANIMATE TOP LEFT */
+.animate-top-right{
+    animation-name: top-right;
+}
+
+.reverse-animate-top-right{
+    animation-name: reverse-top-right;
+}
+@keyframes top-right{
+    0%{
+        background-image: var(--tr-1);
+    }
+    25%{
+        background-image: var(--tr-2);
+    }
+    50%{
+        background-image: var(--tr-3);
+    }
+    75%{
+        background-image: var(--tr-4);
+    }
+    100%{
+        background-image: var(--tr-5);
+    }
+}
+@keyframes reverse-top-right{
+    0%{
+        background-image: var(--tr-5);
+    }
+    25%{
+        background-image: var(--tr-4);
+    }
+    50%{
+        background-image: var(--tr-3);
+    }
+    75%{
+        background-image: var(--tr-2);
+    }
+    100%{
+        background-image: var(--tr-1);
     }
 }

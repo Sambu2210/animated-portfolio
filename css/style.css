@@ -49,11 +49,13 @@ h1,h2,h5,p{
 /* Grid comman style */
 
 #grid{
+    position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 #grid-tl-btn,
 #grid-tr-btn,
@@ -65,6 +67,7 @@ h1,h2,h5,p{
     border:var(--border);
     position: fixed;
     display: flex;
+    text-align: center;
     justify-content: center;
     cursor: pointer;
     font-weight: 600;
@@ -77,7 +80,7 @@ h1,h2,h5,p{
 #grid-tr-content,
 #grid-bl-content,
 #grid-br-content{
-    position: relative;
+    position: absolute;
     text-align: center;
     transition: transform 0.3s ease-in-out;
     color: var(--text-alt);
@@ -94,7 +97,10 @@ h1,h2,h5,p{
 #grid-tl-btn:active,
 #grid-br-btn:active{
     transform: rotate(-45deg) scale(1.05);
-    border: var(--border);
+}
+#grid-tr-btn:active,
+#grid-bl-btn:active{
+    transform: rotate(45deg) scale(1.05);
 }
 
 /* Top left corner */
@@ -109,7 +115,7 @@ h1,h2,h5,p{
     width: 30vw;
     top: 10vh;
     left: 0;
-    transform: translate(-100vw) translate(-100vh);
+    transform: translateX(-100vw) translateY(-100vh);
 }
 article{
     background:rgb(245,245,245);
@@ -132,10 +138,10 @@ article p{
 article h2,article p{
     color: #333;
 }
-#cards{
+.cards{
     padding: 0;
 }
-#card-content{
+.card-content{
     display: flex;
     align-items: center;
 }
@@ -143,4 +149,53 @@ article h2,article p{
     color: var(--text);
     text-align: left;
     margin: 0 1rem;
+}
+
+/* Top right corner */
+
+#grid-tr-btn{
+    transform: rotate(45deg);
+    right: -11.5rem;
+    top: -11.5rem;
+}
+#grid-tr-content{
+    width: 30vw;
+    top: 10vh;
+    right: 0;
+    transform: translateX(100vw) translateY(-100vh);
+}
+.experience{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+.experience-skils{
+    display: flex;
+    gap: 0.2rem;
+    flex-direction: column;
+    padding: 1.2rem;
+    margin: 0;
+    width: fit-content;
+}
+.experience-skils div{
+    display: flex;
+    align-items: center;
+    width: 13.5rem;
+}
+.experience-skils div div{
+    justify-content: space-between;
+}
+.experience-skils div img{
+    padding: 0;
+    margin-right: 0.5rem;
+}
+.experience-skils h2{
+  text-align: left;
+}
+.experience-skils p{
+    padding: 0;
+}
+.experience-skils p,.experience-skils h2{
+    font-size: 0.8rem;
 }
